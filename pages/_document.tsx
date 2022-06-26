@@ -17,7 +17,13 @@ export default class MyDocument extends Document {
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
-        <body>
+        <body
+          style={{
+            backgroundColor: "#8BC6EC",
+            backgroundImage:
+              "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
+          }}
+        >
           <Main />
           <NextScript />
         </body>

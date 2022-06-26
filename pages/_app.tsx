@@ -1,7 +1,13 @@
+import "@fontsource/poppins";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/900.css";
 import React from "react";
-import PropTypes from "prop-types";
 import Head from "next/head";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "../src/theming/theme";
 
 // import theme from "../src/theme";
 
@@ -24,10 +30,10 @@ export default function MyApp(props: any) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      {/* <ThemeProvider theme={theme}> */}
-      <CssBaseline />
-      <Component {...pageProps} />
-      {/* </ThemeProvider> */}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </React.Fragment>
   );
 }
