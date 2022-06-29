@@ -1,50 +1,20 @@
 import * as React from "react";
 import type { NextPage } from "next";
-import Container from "@mui/material/Container";
-import { Grid, Theme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { TimeInfo } from "../src/components/TimeInfo";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: "20px 20px",
-    height: "100vh",
-  },
-  wrapper: {
-    minHeight: "100%",
-    borderRadius: "20px",
-    overflow: "hidden",
-  },
-  item: {
-    padding: "30px",
-    minHeight: "100%",
-  },
-}));
+import { useAppDispatch, useAppSelector } from "../src/hooks/redux";
+import { Typography } from "@mui/material";
+import { useEffect } from "react";
+import { weatherAPI } from "../src/services/WeatherService";
 
 const Home: NextPage = () => {
-  const classes = useStyles();
+  const { data } = weatherAPI.useFetchWeatherQuery("Lviv&aqi=no");
+
+  // eslint-disable-next-line no-console
+  console.log(data);
 
   return (
-    <Container maxWidth="xl" className={classes.root}>
-      <Grid container className={classes.wrapper}>
-        <Grid
-          item
-          md={8}
-          sx={{ backgroundColor: "#CCDDFF" }}
-          className={classes.item}
-        >
-          <TimeInfo />
-        </Grid>
-        <Grid
-          item
-          md={4}
-          sx={{ backgroundColor: "white" }}
-          className={classes.item}
-        >
-          kek
-        </Grid>
-      </Grid>
-    </Container>
+    <div>
+      <Typography></Typography>
+    </div>
   );
 };
 

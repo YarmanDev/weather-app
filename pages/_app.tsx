@@ -8,8 +8,10 @@ import React from "react";
 import Head from "next/head";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../src/theming/theme";
+import { Provider } from "react-redux";
+import { setupStore } from "../src/store/store";
 
-// import theme from "../src/theme";
+const store = setupStore();
 
 export default function MyApp(props: any) {
   const { Component, pageProps } = props;
@@ -31,8 +33,10 @@ export default function MyApp(props: any) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </React.Fragment>
   );
