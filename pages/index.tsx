@@ -1,20 +1,26 @@
 import * as React from "react";
 import type { NextPage } from "next";
-import { useAppDispatch, useAppSelector } from "../src/hooks/redux";
-import { Typography } from "@mui/material";
-import { useEffect } from "react";
-import { weatherAPI } from "../src/services/WeatherService";
+
+import { Container, Theme } from "@mui/material";
+
+import { makeStyles } from "@mui/styles";
+import { Autocomplete } from "../src/components/Autocomplete";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: "flex",
+    padding: "20px 20px",
+    height: "100vh",
+  },
+}));
 
 const Home: NextPage = () => {
-  const { data } = weatherAPI.useFetchWeatherQuery("Lviv&aqi=no");
-
-  // eslint-disable-next-line no-console
-  console.log(data);
+  const classes = useStyles();
 
   return (
-    <div>
-      <Typography></Typography>
-    </div>
+    <Container maxWidth="xl" className={classes.root}>
+      <Autocomplete />
+    </Container>
   );
 };
 

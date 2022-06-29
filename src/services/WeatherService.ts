@@ -1,13 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IAutocompleteOption } from "../interfaces/autocompleteOptions";
 
 export const weatherAPI = createApi({
   reducerPath: "weatherAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl:
-      "http://api.weatherapi.com/v1/current.json?key=39d6a41f2f1d4974b1d181659212911&q=",
+    baseUrl: "http://api.weatherapi.com/v1/",
   }),
   endpoints: (build) => ({
-    fetchWeather: build.query({
+    fetchAutocomplete: build.query<IAutocompleteOption[], string>({
+      query: (parameters: string) => ({
+        url: parameters,
+      }),
+    }),
+    fetchForecast: build.query<IAutocompleteOption[], string>({
       query: (parameters: string) => ({
         url: parameters,
       }),
