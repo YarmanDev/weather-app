@@ -101,6 +101,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       className={className}
       ref={ref}
       to={href}
+      sx={{ cursor: "pointer" }}
       {...other}
     />
   );

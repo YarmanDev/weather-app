@@ -6,6 +6,11 @@ import { Box, Container, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Autocomplete } from "../src/components/Autocomplete";
 import { ForecastCard } from "../src/components/ForecastCard";
+import { useAppSelector } from "../src/hooks/redux";
+import { weatherAPI } from "../src/services/WeatherService";
+import { getSearchEndpoint } from "../src/constants/weatherEndpoints";
+import { ICurrentForecast } from "../src/interfaces/currentForecast";
+import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,12 +30,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Home: NextPage = () => {
   const classes = useStyles();
+  const { cities } = useAppSelector((state) => state.citiesReducer);
+  const { data: cityData } = weatherAPI.useFetchAllCitiesQuery(cities);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
       <Autocomplete />
       <Box className={classes.cards}>
-        <ForecastCard />
+        {cityData?.map((city) => (
+          <Link key={city.location.name} href={`city/${city.location.name}`}>
+            <ForecastCard {...city} />
+          </Link>
+        ))}
       </Box>
     </Container>
   );

@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { weatherAPI } from "../services/WeatherService";
+import citiesReducer from "./reducers/CitiesSlice";
 
 const rootReducer = combineReducers({
   [weatherAPI.reducerPath]: weatherAPI.reducer,
+  citiesReducer,
 });
 
 export const setupStore = () =>
