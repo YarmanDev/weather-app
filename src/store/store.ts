@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { weatherAPI } from "../services/WeatherService";
+import { getLocalStorage } from "../utils/localStorageService";
 import citiesReducer from "./reducers/CitiesSlice";
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
 export const setupStore = () =>
   configureStore({
     reducer: rootReducer,
+    preloadedState: getLocalStorage(),
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(weatherAPI.middleware),
   });

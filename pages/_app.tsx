@@ -11,8 +11,13 @@ import theme from "../src/theming/theme";
 import { Provider } from "react-redux";
 import { setupStore } from "../src/store/store";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
+import { saveStateToLS } from "../src/utils/localStorageService";
 
 const store = setupStore();
+
+store.subscribe(() =>
+  saveStateToLS({ citiesReducer: store.getState().citiesReducer })
+);
 
 export default function MyApp(props: any) {
   const { Component, pageProps } = props;
