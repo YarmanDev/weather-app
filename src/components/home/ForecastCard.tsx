@@ -6,6 +6,7 @@ import { ICurrentWeather } from "../../interfaces/currentForecast";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch } from "../../hooks/redux";
 import { citiesSlice } from "../../store/reducers/CitiesSlice";
+import CachedIcon from "@mui/icons-material/Cached";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,9 +35,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 30,
     right: 20,
   },
+  refetch: {
+    position: "absolute",
+    fontSize: 30,
+    left: 20,
+  },
 }));
+type IProps = ICurrentWeather & { refetch: () => void };
 
-export const ForecastCard = ({ location, current }: ICurrentWeather) => {
+export const ForecastCard = (props: IProps) => {
+  const { location, current, refetch } = props;
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const { removeCity } = citiesSlice.actions;
@@ -46,9 +54,15 @@ export const ForecastCard = ({ location, current }: ICurrentWeather) => {
     dispatch(removeCity(location.name));
   };
 
+  const handleRefetch = (e: React.MouseEvent<SVGSVGElement>) => {
+    e.preventDefault();
+    refetch();
+  };
+
   return (
     <Box className={classes.root}>
       <DeleteIcon className={classes.delete} onClick={handleDelete} />
+      <CachedIcon className={classes.refetch} onClick={handleRefetch} />
       <Typography variant="h4">{location.name}</Typography>
       <Image
         src={`https:${current.condition.icon}`}

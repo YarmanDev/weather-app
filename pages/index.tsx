@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Home: NextPage = () => {
   const classes = useStyles();
   const { cities } = useAppSelector((state) => state.citiesReducer);
-  const { data: cityData } = weatherAPI.useFetchAllCitiesQuery(cities);
+  const { data: cityData, refetch } = weatherAPI.useFetchAllCitiesQuery(cities);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
       <Box className={classes.cards}>
         {cityData?.map((city) => (
           <Link key={city.location.name} href={`city/${city.location.name}`}>
-            <ForecastCard {...city} />
+            <ForecastCard {...city} refetch={refetch} />
           </Link>
         ))}
       </Box>
