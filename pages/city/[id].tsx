@@ -9,6 +9,7 @@ import { weatherAPI } from "../../src/services/WeatherService";
 import { getForecastEndpoint } from "../../src/constants/weatherEndpoints";
 import { WeekForecast } from "../../src/components/city/WeekForecast";
 import { AirQuality } from "../../src/components/city/AirQuality";
+import { MainWeatherInfo } from "../../src/components/city/MainWeatherInfo";
 
 interface IProps {
   params: {
@@ -70,7 +71,7 @@ const CityPage: NextPage<IProps> = ({ params }) => {
           sx={{ backgroundColor: "white" }}
           className={classes.item}
         >
-          kek
+          <MainWeatherInfo {...data.current} location={data.location.name} />
         </Grid>
       </Grid>
     </Container>

@@ -1,8 +1,7 @@
-import { alpha, Box, PaletteColor, Theme, Typography } from "@mui/material";
+import { Box, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Image from "next/image";
 import React from "react";
-import { getForecastEndpoint } from "../../constants/weatherEndpoints";
 import { ForecastDay } from "../../interfaces/currentForecast";
 import theme from "../../theming/theme";
 

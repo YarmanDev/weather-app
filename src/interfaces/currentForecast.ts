@@ -43,7 +43,7 @@ interface Condition {
   code: number;
 }
 
-interface Current {
+export interface Current {
   air_quality: IAirQuality;
   last_updated_epoch: number;
   last_updated: string;
