@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   item: {
     padding: "30px",
     minHeight: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
   widgets: {
     display: "grid",

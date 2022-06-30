@@ -6,8 +6,7 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: "30px 0",
-    height: "100vh",
+    width: "100%",
   },
   mainInfo: {
     display: "flex",
@@ -46,7 +45,7 @@ export const TimeInfo = () => {
   });
 
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.mainInfo}>
         <Typography variant="h3" className={classes.time}>
           {time}

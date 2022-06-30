@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(3, 1fr)",
     gridColumnGap: 20,
     marginTop: 20,
+    width: "100%",
   },
 }));
 
