@@ -1,7 +1,7 @@
 import { Box, Switch, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { formatDate } from "../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 const useStyles = makeStyles((theme: Theme) => ({

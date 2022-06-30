@@ -5,3 +5,6 @@ export const getSearchEndpoint = (city: string) =>
 
 export const getAutocompleteEndpoint = (city: string) =>
   `search.json?key=${API_KEY}&q=${city}`;
+
+export const getForecastEndpoint = (city: string) =>
+  `forecast.json?key=${API_KEY}&q=${city}&days=3&aqi=no&alerts=no`;

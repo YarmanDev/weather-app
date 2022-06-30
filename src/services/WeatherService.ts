@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getSearchEndpoint } from "../constants/weatherEndpoints";
 import { IAutocompleteOption } from "../interfaces/autocompleteOptions";
-import { ICurrentForecast } from "../interfaces/currentForecast";
+import { ICurrentWeather, IForecast } from "../interfaces/currentForecast";
 
 export const weatherAPI = createApi({
   reducerPath: "weatherAPI",
@@ -14,12 +14,12 @@ export const weatherAPI = createApi({
         url: parameters,
       }),
     }),
-    fetchForecast: build.query<ICurrentForecast, string>({
+    fetchForecast: build.query<IForecast, string>({
       query: (parameters: string) => ({
         url: parameters,
       }),
     }),
-    fetchAllCities: build.query<ICurrentForecast[], string[]>({
+    fetchAllCities: build.query<ICurrentWeather[], string[]>({
       async queryFn(parameters: string[], api, _, fetchWithBQ) {
         try {
           const forecastPromises = parameters.map((city) =>
@@ -28,7 +28,7 @@ export const weatherAPI = createApi({
           const promisesData = await Promise.all(forecastPromises);
 
           const forecastData = promisesData.map((data) => data.data);
-          return { data: forecastData as ICurrentForecast[] }; //TODO change this with providing typing for fetchWithBQ function
+          return { data: forecastData as ICurrentWeather[] }; //TODO change this with providing typing for fetchWithBQ function
         } catch (error) {
           throw error;
         }

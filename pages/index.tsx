@@ -4,12 +4,12 @@ import type { NextPage } from "next";
 import { Box, Container, Theme } from "@mui/material";
 
 import { makeStyles } from "@mui/styles";
-import { Autocomplete } from "../src/components/Autocomplete";
-import { ForecastCard } from "../src/components/ForecastCard";
+import { Autocomplete } from "../src/components/home/Autocomplete";
+import { ForecastCard } from "../src/components/home/ForecastCard";
 import { useAppSelector } from "../src/hooks/redux";
 import { weatherAPI } from "../src/services/WeatherService";
 import { getSearchEndpoint } from "../src/constants/weatherEndpoints";
-import { ICurrentForecast } from "../src/interfaces/currentForecast";
+import { ICurrentWeather } from "../src/interfaces/currentForecast";
 import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme: Theme) => ({

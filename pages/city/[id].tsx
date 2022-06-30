@@ -1,10 +1,19 @@
 import React from "react";
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Container from "@mui/material/Container";
 import { Grid, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { TimeInfo } from "../../src/components/TimeInfo";
-import { useAppSelector } from "../../src/hooks/redux";
+import { TimeInfo } from "../../src/components/city/TimeInfo";
+import { useRouter } from "next/router";
+import { weatherAPI } from "../../src/services/WeatherService";
+import { getForecastEndpoint } from "../../src/constants/weatherEndpoints";
+import { WeekForecast } from "../../src/components/city/WeekForecast";
+
+interface IProps {
+  params: {
+    id: string;
+  };
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -22,8 +31,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const CityPage: NextPage = () => {
+const CityPage: NextPage<IProps> = ({ params }) => {
+  const { id } = params;
   const classes = useStyles();
+  const { data } = weatherAPI.useFetchForecastQuery(getForecastEndpoint(id));
+  if (!data) return <></>;
+  console.log(data);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -35,6 +48,7 @@ const CityPage: NextPage = () => {
           className={classes.item}
         >
           <TimeInfo />
+          <WeekForecast {...data} />
         </Grid>
         <Grid
           item
@@ -47,6 +61,12 @@ const CityPage: NextPage = () => {
       </Grid>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: { params: context.params },
+  };
 };
 
 export default CityPage;

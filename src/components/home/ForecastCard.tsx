@@ -2,7 +2,7 @@ import { Box, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Image from "next/image";
 import React from "react";
-import { ICurrentForecast } from "../interfaces/currentForecast";
+import { ICurrentWeather } from "../../interfaces/currentForecast";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     borderRadius: "30px",
     padding: "20px",
+    maxHeight: 300,
   },
   condition: {
     margin: "0 0 15px 0",
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const ForecastCard = ({ location, current }: ICurrentForecast) => {
+export const ForecastCard = ({ location, current }: ICurrentWeather) => {
   const classes = useStyles();
 
   return (

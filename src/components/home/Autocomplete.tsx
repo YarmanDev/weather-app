@@ -2,12 +2,12 @@ import { Box, ClickAwayListener, Input, ListItem, Theme } from "@mui/material";
 import { alpha } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
-import { getAutocompleteEndpoint } from "../constants/weatherEndpoints";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import useDebounce from "../hooks/useDebounce";
-import { IAutocompleteOption } from "../interfaces/autocompleteOptions";
-import { weatherAPI } from "../services/WeatherService";
-import { citiesSlice } from "../store/reducers/CitiesSlice";
+import { getAutocompleteEndpoint } from "../../constants/weatherEndpoints";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import useDebounce from "../../hooks/useDebounce";
+import { IAutocompleteOption } from "../../interfaces/autocompleteOptions";
+import { weatherAPI } from "../../services/WeatherService";
+import { citiesSlice } from "../../store/reducers/CitiesSlice";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
