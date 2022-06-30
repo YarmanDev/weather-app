@@ -62,7 +62,7 @@ export const Autocomplete = () => {
   };
 
   const handleOptionClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    dispatch(addCity((e.target as HTMLLIElement).textContent));
+    dispatch(addCity((e.target as HTMLLIElement).textContent ?? ""));
     setShowOptions(false);
     setInputValue("");
   };
