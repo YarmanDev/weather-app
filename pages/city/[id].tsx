@@ -10,6 +10,7 @@ import { getForecastEndpoint } from "../../src/constants/weatherEndpoints";
 import { WeekForecast } from "../../src/components/city/WeekForecast";
 import { AirQuality } from "../../src/components/city/AirQuality";
 import { MainWeatherInfo } from "../../src/components/city/MainWeatherInfo";
+import { HourForecast } from "../../src/components/city/HourForecast";
 
 interface IProps {
   params: {
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 20,
     width: "100%",
     gridTemplateColumns: "repeat(2, 1fr)",
+    gridColumnGap: 25,
   },
 }));
 
@@ -49,6 +51,7 @@ const CityPage: NextPage<IProps> = ({ params }) => {
   const { data } = weatherAPI.useFetchForecastQuery(getForecastEndpoint(id));
   if (!data) return <></>;
   console.log(data);
+  const hourForecast = data.forecast.forecastday[0].hour.slice(0, 7);
 
   return (
     <Container maxWidth="xl" className={classes.root}>
@@ -63,6 +66,7 @@ const CityPage: NextPage<IProps> = ({ params }) => {
           <WeekForecast {...data} />
           <Box className={classes.widgets}>
             <AirQuality airData={data.current.air_quality} />
+            <HourForecast info={hourForecast} />
           </Box>
         </Grid>
         <Grid
