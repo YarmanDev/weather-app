@@ -50,13 +50,12 @@ export const TimeInfo = () => {
         <Typography variant="h3" className={classes.time}>
           {time}
         </Typography>
-        <Switch />
       </div>
       <Typography variant="body2">{fullDate}</Typography>
       <Box className={classes.greetWrapper}>
         <WbSunnyIcon color="primary" sx={{ fontSize: 31 }} />
         <Typography variant="body2" className={classes.greetings}>
-          Good {getDayPeriod()}, Yarik
+          Good {getDayPeriod()}!
         </Typography>
       </Box>
     </div>

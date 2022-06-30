@@ -8,8 +8,6 @@ import { Autocomplete } from "../src/components/home/Autocomplete";
 import { ForecastCard } from "../src/components/home/ForecastCard";
 import { useAppSelector } from "../src/hooks/redux";
 import { weatherAPI } from "../src/services/WeatherService";
-import { getSearchEndpoint } from "../src/constants/weatherEndpoints";
-import { ICurrentWeather } from "../src/interfaces/currentForecast";
 import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme: Theme) => ({
