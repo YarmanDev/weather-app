@@ -11,8 +11,6 @@ import { BarElement, CategoryScale, Legend, LinearScale } from "chart.js";
 Chart.register(BarElement, CategoryScale, LinearScale, Legend);
 
 export const HourForecast = ({ info }: { info: Hour[] }) => {
-  // eslint-disable-next-line no-console
-  console.log(info);
   const labels = info.map((hour) =>
     formatDate({ hour: "numeric" }, new Date(hour.time))
   );

@@ -3,6 +3,9 @@ import { makeStyles } from "@mui/styles";
 import Image from "next/image";
 import React from "react";
 import { ICurrentWeather } from "../../interfaces/currentForecast";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useAppDispatch } from "../../hooks/redux";
+import { citiesSlice } from "../../store/reducers/CitiesSlice";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -14,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "30px",
     padding: "20px",
     maxHeight: 300,
+    position: "relative",
   },
   condition: {
     margin: "0 0 15px 0",
@@ -25,13 +29,26 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     width: "90%",
   },
+  delete: {
+    position: "absolute",
+    fontSize: 30,
+    right: 20,
+  },
 }));
 
 export const ForecastCard = ({ location, current }: ICurrentWeather) => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const { removeCity } = citiesSlice.actions;
+
+  const handleDelete = (e: React.MouseEvent<SVGSVGElement>) => {
+    e.preventDefault();
+    dispatch(removeCity(location.name));
+  };
 
   return (
     <Box className={classes.root}>
+      <DeleteIcon className={classes.delete} onClick={handleDelete} />
       <Typography variant="h4">{location.name}</Typography>
       <Image
         src={`https:${current.condition.icon}`}
