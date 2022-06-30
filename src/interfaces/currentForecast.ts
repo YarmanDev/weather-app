@@ -15,6 +15,17 @@ export interface ForecastDay {
   hour: Hour[];
 }
 
+export interface IAirQuality {
+  co: number;
+  no2: number;
+  o3: number;
+  so2: number;
+  pm2_5: number;
+  pm10: number;
+  "gb-defra-index": number;
+  "us-epa-index": number;
+}
+
 interface Location {
   name: string;
   region: string;
@@ -33,6 +44,7 @@ interface Condition {
 }
 
 interface Current {
+  air_quality: IAirQuality;
   last_updated_epoch: number;
   last_updated: string;
   temp_c: number;

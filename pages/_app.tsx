@@ -6,10 +6,11 @@ import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 import React from "react";
 import Head from "next/head";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "../src/theming/theme";
 import { Provider } from "react-redux";
 import { setupStore } from "../src/store/store";
+import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
 const store = setupStore();
 
@@ -33,10 +34,12 @@ export default function MyApp(props: any) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </Provider>
+        <StyledEngineProvider injectFirst>
+          <Provider store={store}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </Provider>
+        </StyledEngineProvider>
       </ThemeProvider>
     </React.Fragment>
   );

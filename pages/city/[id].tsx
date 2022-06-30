@@ -1,13 +1,14 @@
 import React from "react";
 import type { NextPage, GetServerSideProps } from "next";
 import Container from "@mui/material/Container";
-import { Grid, Theme } from "@mui/material";
+import { Box, Grid, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { TimeInfo } from "../../src/components/city/TimeInfo";
 import { useRouter } from "next/router";
 import { weatherAPI } from "../../src/services/WeatherService";
 import { getForecastEndpoint } from "../../src/constants/weatherEndpoints";
 import { WeekForecast } from "../../src/components/city/WeekForecast";
+import { AirQuality } from "../../src/components/city/AirQuality";
 
 interface IProps {
   params: {
@@ -29,6 +30,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "30px",
     minHeight: "100%",
   },
+  widgets: {
+    display: "grid",
+    marginTop: 20,
+    width: "100%",
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
 }));
 
 const CityPage: NextPage<IProps> = ({ params }) => {
@@ -49,6 +56,9 @@ const CityPage: NextPage<IProps> = ({ params }) => {
         >
           <TimeInfo />
           <WeekForecast {...data} />
+          <Box className={classes.widgets}>
+            <AirQuality airData={data.current.air_quality} />
+          </Box>
         </Grid>
         <Grid
           item
